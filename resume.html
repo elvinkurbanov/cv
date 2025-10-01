@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elvin Kurbanov - Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+  .skills-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;       /* spacing between boxes */
+  margin-top: 1rem;
+}
+
+.skill-tag {
+  background: #e5e7eb;   /* grey box */
+  color: #111;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;    /* rounded like LinkedIn */
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.skill-tag:hover {
+  background: #d1d5db;   /* darker grey on hover */
+}
+  .languages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.language {
+  display: flex;          /* puts p and div on one line */
+  align-items: center;    /* vertically align */
+  gap: 0.5rem;            /* spacing between text and dots */
+}
+
+.language p {
+  margin: 0;
+  font-weight: 600;
+  width: 100px
+}
+
+.dots {
+   margin: 0.5rem;
+  font-weight: 600;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Create 5 dots for each language */
+/* .dots::before,
+.dots::after, */
+.dots span:nth-child(1),
+.dots span:nth-child(2),
+.dots span:nth-child(3) {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+  body { font-family: 'Inter', sans-serif; background:#f0f2f5; margin:0; padding:0; color:#111; }
+  .container { max-width:1000px; margin:2rem auto; padding:1rem; }
+  h1 { font-size:2.2rem; margin-bottom:1.5rem; text-align:center; }
+  /* NAVBAR */
+  header.navbar {
+    position: sticky;
+    top:0;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    z-index:1000;
+  }
+
+  .navbar a { margin-left:1rem; text-decoration:none; color:#4f46e5; font-weight:600; transition:0.3s; }
+  .navbar a:hover { text-decoration:underline; }
+
+  .toggle-btn { padding:0.4rem 0.8rem; border:none; border-radius:8px; cursor:pointer; background:#4f46e5; color:#fff; font-weight:600; transition:0.3s; }
+  .toggle-btn:hover { opacity:0.85; }
+
+  /* CONTAINER */
+  .container { max-width:900px; margin:2rem auto; padding:1rem; }
+
+  h1,h2,h3 { margin-bottom:0.5rem; }
+  h1 { font-size:2.5rem; font-weight:700; }
+  h2 { font-size:1.5rem; font-weight:600; margin-bottom:1rem; margin-top:1rem; }
+a { color:#4f46e5; text-decoration:none; font-weight:600; }
+  a:hover { text-decoration:underline; }
+  /* SECTIONS */
+  section {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    padding:2rem;
+    margin-bottom:2rem;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    transition: background 0.3s, color 0.3s;
+  }
+  body.dark section { background: rgba(20,20,20,0.8); }
+
+ /* SKILLS FIX */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;  /* spacing between skills */
+}
+
+.skill {
+  flex: 0 1 calc(50% - 0.8rem); /* two skills per row on small screens */
+  background: #ddd;
+  border-radius: 20px;
+  padding: 0.5rem 0.8rem;
+  position: relative;
+  overflow: hidden;
+  min-width: 120px; /* prevent shrinking too small */
+}
+
+
+
+.skill span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: #4f46e5;
+  border-radius: 20px;
+  transition: 0.8s;
+}
+
+.skill label {
+  position: relative;
+  z-index: 1;
+  font-size: 0.85rem;
+}
+ /* TIMELINE */
+.timeline {
+  border-left: 5px solid #4f46e5;
+  margin-left: 0.5rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.timeline-item {
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -12px; /* slightly more outside for clarity */
+  top: 0.2rem;
+  width: 16px;
+  height: 16px;
+  background: #4f46e5;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #f0f2f5; /* optional, to create separation from the line */
+}
+
+.timeline-item strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-item span {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+  
+  /* RESPONSIVE */
+  @media (max-width:768px){
+    .navbar { flex-direction:column; align-items:flex-start; }
+    .navbar a { margin-left:0; margin-top:0.5rem; }
+  }
+  @media (max-width:480px){
+    h1 { font-size:2rem; }
+    h2 { font-size:1.2rem; }
+    section { padding:1rem; }
+    .skill label { font-size:0.75rem; }
+  }
+
+  /* PRINT */
+  @media print{
+    body, section { background:#fff; color:#000 !important; }
+    body.dark { background:#fff; color:#000 !important; }
+    header.navbar { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div>
+    <h2>Elvin Kurbanov</h2>
+  </div>
+  <div>
+    <a href="index.html">Landing</a>
+    <a href="contact.html">Contact</a>
+    <a href="project.html">Projects</a>
+    <a href="resume.html">Resume</a>
+    
+  </div>
+  
+</header>
+
+<div class="container">
+    <div style="flex:1 1 250px; text-align:center;">
+    <img src="src_images/elvin.jpeg" alt="Elvin Kurbanov" style="width:250px; height:250px; object-fit:cover; border-radius:50%; box-shadow:0 8px 20px rgba(0,0,0,0.1);">
+    </div>
+    
+  <!-- Landing -->
+  <section id="landing">
+    <h1 align=" center">Welcome!</h1>
+    <p>Hi, I'm Elvin Kurbanov — Graduate student in Computer Science with experience in software development and strong interest in computer graphics, computer vision, and machine learning.</p>
+  </section>
+
+  
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li>Todayscar (04/2024- 09/2024)
+- Car leasing and rent web application</li>
+      <li>DermoPico-Hair (08/2019-02/2020)
+- Hair Analyzing Software working with Bluetooth Device</li>
+      <li>DermoPico-Skin (12/2018-12/2019)
+- RSkin Analyzing Software working with Bluetooth Device</li>
+    </ul>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume">
+   
+
+    <h2 style="margin-top:2rem;">Education</h2>
+    <div class="timeline">
+      <div class="timeline-item"><strong>Sejong University</strong> - Computer Science and Engineering (2016 - 2022) </div>
+      <div class="timeline-item"><strong>Seoul National University of Science & Technology</strong> - Graduate Computer Science and Engineering (2024 – Present)</div>
+      <div class="timeline-item"><strong>Polytachnical Lyceum under TGTU</strong> -Computer Science (2014 – 2016)</div>
+
+    </div>
+
+    <h2 style="margin-top:2rem;">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item"><strong>Freelance Web Developer</strong>
+Todayscar (2024/05 – 2024/09)<br>
+•Led development of web solutions for client projects in
+a hybrid work environment<br>
+•Managed project timelines and collaborated with teams
+to deliver on schedule<br>
+•Improved web performance and user experience using
+modern JavaScript frameworks</div>
+      <div class="timeline-item"><strong>Front-end Developement</strong>
+        MetLife Insurance Company (2022/10–2023/02)<br>
+       • Migrated legacy Java-based website to modern
+       interactive JavaScript frameworks<br>
+       •Developed and optimized UI components with React.js<br>
+       •Enhanced system performance and customer usability
+      </div>
+       <div class="timeline-item"><strong>Customer Support and SNS Marketing</strong>
+        Gmoney (2020/09–2022/07)<br>
+•Built and maintained customer-facing websites using
+WordPress, React.js, and Canva<br>
+•Supported the marketing team in digital campaigns and
+product promotion<br>
+•Contributed to UI/UX design 
+      </div>
+      <div class="timeline-item"><strong>Android Developer (Android Studio)</strong>
+        Chowis Company (2018/12–2020/03)<br>
+• Designed and developed Android applications with
+Java and Android Studio<br>
+•Assisted senior engineers in testing and debugging<br>
+• Applied data structures and algorithms for mobile solutions 
+      </div>
+    </div>
+    <h2 style="margin-top:2rem;">Skills</h2>
+<div class="skills-box">
+  <div class="skill-tag">Python</div>
+  <div class="skill-tag">JavaScript</div>
+  <div class="skill-tag">Java</div>
+  <div class="skill-tag">Node.js</div>
+  <div class="skill-tag">React.js</div>
+  <div class="skill-tag">Git/Github</div>
+  <div class="skill-tag">Android Studio</div>
+  <div class="skill-tag">Data/Ml: Python (Pandas,Numpy,Matplotlib)</div>
+</div>
+    
+<h2>Languages</h2>
+<div class="language">
+    <p>English</p>
+    <div class="dots" data-level="5"></div>
+    </div>
+  <div class="language">
+    <p>Korean</p>
+    <div class="dots" data-level="4"></div>
+  </div>
+  <div class="language">
+    <p>Russian</p>
+    <div class="dots" data-level="5"></div>
+  </div>
+   <div class="language">
+    <p>Turkish</p>
+    <div class="dots" data-level="5"></div>
+  </div>
+   <div class="language">
+    <p>Uzbek</p>
+    <div class="dots" data-level="5"></div>
+  </div>
+  </section>
+<!-- Contact -->
+  <section>
+  <h1>Contact Me</h1>
+  <p><strong>Email:</strong> <a href="mailto:elvinkurbanov1998@gmail.com.com">elvinkurbanov1998@gmail.com</a></p>
+  <p><strong>Phone:</strong><a href = "tel: +821032931975">+82-10-3293-1975</a></p>
+  <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/elvin-kurbanov" target="_blank">linkedin.com/in/elvin-kurbanov</a></p>
+  <p><strong>GitHub:</strong> <a href="https://github.com/elvinkurbanov" target="_blank">github.com/elvinkurbanov</a></p>
+  <p><strong>Location:</strong> Seoul, South Korea</p>
+  </section>
+  <div style="text-align: center; margin: 1rem;">
+  <button onclick="downloadPDF()" 
+          style="padding:0.6rem 1.2rem; background:#4f46e5; color:#fff; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
+    Download PDF
+  </button>
+  </div>
+  
+</div>
+
+
+<script>
+
+async function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+
+  // Create new PDF
+  const doc = new jsPDF('p', 'pt', 'a4');
+
+  // Get the content you want to export (your resume section)
+  const element = document.querySelector("body"); // or use "#resume" if wrapped
+
+  // Convert HTML to PDF
+  await doc.html(element, {
+    callback: function (doc) {
+      doc.save("Elvin_Resume.pdf");
+    },
+    margin: [20, 20, 20, 20],
+    autoPaging: 'text',
+    x: 0,
+    y: 0,
+    width: 570, // adjust width for A4
+    windowWidth: 900
+  });
+}
+// Animate skill bars
+function animateSkills() {
+  document.querySelectorAll('.skill span').forEach(el => {
+    const width = el.dataset.width;
+    el.style.width = width;
+  });
+}
+window.addEventListener('scroll', () => {
+  const skills = document.getElementById('resume');
+  if(window.scrollY + window.innerHeight > skills.offsetTop + 100){
+    animateSkills();
+  }
+});
+
+// For each .dots container, create 5 dots and fill based on data-level
+document.querySelectorAll('.dots').forEach(dotContainer => {
+  const level = parseInt(dotContainer.dataset.level);
+  dotContainer.innerHTML = ''; // clear content
+  for (let i = 1; i <= 5; i++) {
+    const dot = document.createElement('span');
+    dot.style.width = '12px';
+    dot.style.height = '12px';
+    dot.style.borderRadius = '50%';
+    dot.style.display = 'inline-block';
+    dot.style.background = i <= level ? '#4f46e5' : '#ddd';
+    dotContainer.appendChild(dot);
+  }
+});
+
+</script>
+
+</body>
+</html>

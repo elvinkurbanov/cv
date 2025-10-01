@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Elvin Kurbanov</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; background:#f0f2f5; color:#111; margin:0; padding:0; }
+  .container { max-width:600px; margin:5rem auto; padding:2rem; background:#fff; border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.05); }
+  h1 { font-size:2rem; margin-bottom:1rem; }
+  p { margin:0.5rem 0; }
+  a { color:#4f46e5; text-decoration:none; font-weight:600; }
+  a:hover { text-decoration:underline; }
+
+ /* NAVBAR */
+  header.navbar {
+    position: sticky;
+    top:0;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    z-index:1000;
+  }
+
+  .navbar a { margin-left:1rem; text-decoration:none; color:#4f46e5; font-weight:600; transition:0.3s; }
+  .navbar a:hover { text-decoration:underline; }
+
+   /* RESPONSIVE */
+  @media (max-width:768px){
+    .navbar { flex-direction:column; align-items:flex-start; }
+    .navbar a { margin-left:0; margin-top:0.5rem; }
+  }
+  @media (max-width:480px){
+    h1 { font-size:2rem; }
+    h2 { font-size:1.2rem; }
+    section { padding:1rem; }
+    .skill label { font-size:0.75rem; }
+  }
+</style>
+</head>
+<body>
+<header class="navbar">
+   <div>
+    <h2>Elvin Kurbanov</h2>
+  </div>
+  <div>
+    <a href="index.html">Landing</a>
+    <a href="contact.html">Contact</a>
+    <a href="project.html">Projects</a>
+    <a href="resume.html">Resume</a>
+    
+  </div>
+</header>
+
+<div class="container">
+  <h1>Contact Me</h1>
+  <p><strong>Email:</strong> <a href="mailto:elvinkurbanov1998@gmail.com.com">elvinkurbanov1998@gmail.com</a></p>
+  <p><strong>Phone:</strong><a href = "tel: +821032931975">+82-10-3293-1975</a></p>
+  <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/elvin-kurbanov" target="_blank">linkedin.com/in/elvin-kurbanov</a></p>
+  <p><strong>GitHub:</strong> <a href="https://github.com/elvinkurbanov" target="_blank">github.com/elvinkurbanov</a></p>
+  <p><strong>Location:</strong> Seoul, South Korea</p>
+</div>
+
+</body>
+</html>
